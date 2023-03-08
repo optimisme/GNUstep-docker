@@ -67,9 +67,9 @@ RUN . $pathSh && defaults write NSGlobalDomain NSMenuFont OpenSans
 RUN . $pathSh && defaults write NSGlobalDomain NSMenuFontSize 14.0
 RUN . $pathSh && defaults write NSGlobalDomain NSMessageFont OpenSans
 RUN . $pathSh && defaults write NSGlobalDomain NSMessageFontSize 14.0
-RUN . $pathSh && defaults write NSGlobalDomain NSPaletteFont OpenSans-Bold
+RUN . $pathSh && defaults write NSGlobalDomain NSPaletteFont OpenSans
 RUN . $pathSh && defaults write NSGlobalDomain NSPaletteFontSize 14.0
-RUN . $pathSh && defaults write NSGlobalDomain NSTitleBarFont OpenSans-Bold
+RUN . $pathSh && defaults write NSGlobalDomain NSTitleBarFont OpenSans
 RUN . $pathSh && defaults write NSGlobalDomain NSTitleBarFontSize 14.0
 RUN . $pathSh && defaults write NSGlobalDomain NSToolTipsFont OpenSans
 RUN . $pathSh && defaults write NSGlobalDomain NSToolTipsFontSize 14.0
