@@ -90,8 +90,8 @@ RUN sudo -- bash -c ". $pathSh && make && make install"
 WORKDIR $userFolder
 ENV pathThemes=GNUstep/Library/Themes
 ENV gitThemes=https://github.com/gnustep/themes.git
-RUN cd $userFolder && mkdir -p GNUstep && mkdir -p GNUstep/Library && mkdir -p $pathThemes
-RUN cd $userFolder/$pathThemes && git clone $gitThemes && cd themes && mv * ../ && cd .. && rm -rf themes
+RUN cd $userFolder && mkdir -p $pathThemes
+RUN cd $userFolder/$pathThemes && git clone $gitThemes && mv themes/* ./ && rm -rf themes
 
 # Install GNUstep-hello-world
 WORKDIR $userFolder
