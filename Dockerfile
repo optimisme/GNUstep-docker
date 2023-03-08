@@ -7,17 +7,19 @@ ARG userName=docker
 ARG userFolder=/home/$userName
 ARG pathSh=/usr/GNUstep/System/Library/Makefiles/GNUstep.sh
 ARG pathApp=$userFolder/GNUstep-hello-world
-ARG pathEntry=$pathApp/entry.sh
+ARG pathEntry=$pathApp/runApp.sh
 
-# Use /bin/bash instead of /bin/sh to activate "tab" autocompletion and "arrow keys" history
-RUN ln -sf /bin/bash /bin/sh
+# Use /bin/bash instead of /bin/sh 
+RUN echo "dash dash/sh boolean false" | debconf-set-selections
+RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
+ENV ENV ~/.profile
 
-# Update apt
+# Update apt listings
 RUN apt -y update
 
 # Set sudo without password and add user
 RUN apt-get -y install sudo
-RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
+RUN useradd -m $userName && echo "$userName:$userName" | chpasswd && adduser $userName sudo
 RUN chown -R "$userName:$userName" "$userFolder"
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
@@ -35,8 +37,11 @@ RUN apt -y install clang
 RUN apt -y install libgl-dev
 RUN apt -y install libglu1-mesa-dev
 
+# Install additionals
+RUN apt -y install fonts-open-sans
+
 # Set user
-USER docker
+USER $userName
 
 # Install GNUstep
 WORKDIR $userFolder
@@ -48,7 +53,15 @@ RUN ./GNUstep-buildon-ubuntu2204.sh
 RUN . $pathSh && defaults write NSGlobalDomain GSSuppressAppIcon YES
 RUN . $pathSh && defaults write NSGlobalDomain GSAppOwnsMiniwindow NO
 RUN . $pathSh && defaults write NSGlobalDomain NSMenuInterfaceStyle NSWindows95InterfaceStyle
-RUN . $pathSh && defaults read NSGlobalDomain
+
+RUN . $pathSh && defaults write NSGlobalDomain NSFont OpenSans
+RUN . $pathSh && defaults write NSGlobalDomain NSFontSize 14.0
+
+# Install GNUstep system preferences
+WORKDIR $userFolder
+RUN cd $userFolder && git clone https://github.com/gnustep/apps-systempreferences
+WORKDIR $userFolder/apps-systempreferences
+RUN sudo -- bash -c ". $pathSh && make && make install"
 
 # Install GNUstep-hello-world
 WORKDIR $userFolder
@@ -63,4 +76,4 @@ RUN echo "./Hello.app/Hello" >> $pathEntry
 RUN chmod +x $pathEntry
 
 # Set entrypoint (can't use ARGs)
-ENTRYPOINT ["/home/docker/GNUstep-hello-world/entry.sh"]
+ENTRYPOINT ["/home/docker/GNUstep-hello-world/runApp.sh"]

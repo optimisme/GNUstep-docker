@@ -31,6 +31,14 @@ make
 ./Hello.app/Hello
 ```
 
+## Run GNUstep System Preferences
+
+From the docker terminal:
+
+```
+/home/docker/apps-systempreferences/SystemPreferences/SystemPreferences.app/SystemPreferences
+```
+
 ## Install and run XQuartz to run X11 GUI apps on macOS
 
 If you are running docker on macOS, you can install XQuartz to run X11 GUI apps on your Mac.
