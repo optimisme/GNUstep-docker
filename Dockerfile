@@ -55,6 +55,11 @@ RUN ./GNUstep-buildon-ubuntu2204.sh
 RUN . $pathSh && defaults write NSGlobalDomain GSSuppressAppIcon YES
 RUN . $pathSh && defaults write NSGlobalDomain GSAppOwnsMiniwindow NO
 RUN . $pathSh && defaults write NSGlobalDomain NSMenuInterfaceStyle NSWindows95InterfaceStyle
+RUN . $pathSh && defaults write NSGlobalDomain NSInterfaceStyleDefault NSWindows95InterfaceStyle
+
+# RUN . $pathSh && defaults write NSGlobalDomain NSMenuInterfaceStyle NSNoInterfaceStyle
+# RUN . $pathSh && defaults write NSGlobalDomain NSInterfaceStyleDefault NSNoInterfaceStyle
+# RUN . $pathSh && defaults write NSGlobalDomain GSBackHandlesWindowDecorations NO
 
 RUN . $pathSh && defaults write NSGlobalDomain GSTheme WinClassic
 
