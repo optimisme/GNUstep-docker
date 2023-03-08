@@ -33,7 +33,7 @@ make
 
 ## Install and run XQuartz to run X11 GUI apps on macOS
 
-If you are running macOS, you can install XQuartz to run X11 GUI apps on your Mac.
+If you are running docker on macOS, you can install XQuartz to run X11 GUI apps on your Mac.
 
 ```
 brew install --cask xquartz
