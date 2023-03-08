@@ -10,8 +10,14 @@ docker build -t gnustep --no-cache - < ./Dockerfile
 
 ### Run as a Container:
 
+Linux:
 ```
 docker run -dit --env="DISPLAY=host.docker.internal:0" gnustep
+```
+
+OSX:
+```
+docker run -dit --env="DISPLAY=docker.for.mac.host.internal:0" gnustep
 ```
 
 ### Hello world application location:
