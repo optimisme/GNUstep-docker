@@ -42,7 +42,7 @@ make
 From the docker terminal:
 
 ```
-/home/docker/apps-systempreferences/SystemPreferences/SystemPreferences.app/SystemPreferences
+openapp /home/docker/apps-systempreferences/SystemPreferences/SystemPreferences.app
 ```
 
 ## Install and run XQuartz to run X11 GUI apps on macOS

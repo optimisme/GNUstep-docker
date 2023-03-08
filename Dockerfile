@@ -5,10 +5,11 @@ ARG timeZone="America/New_York"
 ARG userName=docker
 
 ARG userFolder=/home/$userName
-ARG pathSh=/usr/GNUstep/System/Library/Makefiles/GNUstep.sh
+ARG pathOpen=/usr/GNUstep/System/Tools/openapp
+ARG pathShFolder=/usr/GNUstep/System/Library/Makefiles
+ARG pathSh=$pathShFolder/GNUstep.sh
 ARG pathApp=$userFolder/GNUstep-hello-world
-ARG execApp=./Hello.app/Hello
-ARG pathEntry=$pathApp/runApp.sh
+ARG execApp=$pathApp/Hello.app
 
 # Use /bin/bash instead of /bin/sh 
 RUN echo "dash dash/sh boolean false" | debconf-set-selections
@@ -99,11 +100,13 @@ RUN git clone https://github.com/optimisme/GNUstep-hello-world.git
 RUN cd $pathApp && . $pathSh && make
 
 # Create an entrypoint
-RUN echo "#!/bin/bash" > $pathEntry
-RUN echo "cd $pathApp" >> $pathEntry
-RUN echo ". $pathSh" >> $pathEntry
-RUN echo "$execApp" >> $pathEntry
+RUN echo "export GNUSTEP_CONFIG_FILE=$pathShFolder" >> $userFolder/.bashrc
+
+ARG pathEntry=/entrypoint.sh
+RUN sudo -- bash -c "echo \"#!/bin/bash\" > $pathEntry"
+RUN sudo -- bash -c "echo \"$pathOpen $execApp\" >> $pathEntry"
+RUN sudo -- bash -c "chown $userName:$userName $pathEntry"
 RUN chmod +x $pathEntry
 
 # Set entrypoint (can't use ARGs)
-ENTRYPOINT ["/home/docker/GNUstep-hello-world/runApp.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
