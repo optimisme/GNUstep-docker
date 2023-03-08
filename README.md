@@ -2,16 +2,33 @@
 
 This repository contains an example of how to build a GNUstep application using Docker.
 
-## Create Docker Image:
+### Create Docker Image:
 
 ```
 docker build -t gnustep --no-cache - < ./Dockerfile
 ```
 
-## Run as a Container:
+### Run as a Container:
 
 ```
 docker run -dit --env="DISPLAY=host.docker.internal:0" gnustep
+```
+
+### Hello world file location:
+
+The hello world file will automatically launch, it is located at: 
+
+```
+/home/docker/GNUstep-hello-world
+```
+
+The hello world application can be compiled and run with:
+
+```
+cd /home/docker/GNUstep-hello-world
+. /usr/GNUstep/System/Library/Makefiles/GNUstep.sh
+make
+./Hello.app/Hello
 ```
 
 ## Install and run XQuartz to run X11 GUI apps on macOS
