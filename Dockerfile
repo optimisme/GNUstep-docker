@@ -7,6 +7,7 @@ ARG userName=docker
 ARG userFolder=/home/$userName
 ARG pathSh=/usr/GNUstep/System/Library/Makefiles/GNUstep.sh
 ARG pathApp=$userFolder/GNUstep-hello-world
+ARG execApp=./Hello.app/Hello
 ARG pathEntry=$pathApp/runApp.sh
 
 # Use /bin/bash instead of /bin/sh 
@@ -63,6 +64,13 @@ RUN cd $userFolder && git clone https://github.com/gnustep/apps-systempreference
 WORKDIR $userFolder/apps-systempreferences
 RUN sudo -- bash -c ". $pathSh && make && make install"
 
+# Add GNUstep themes
+WORKDIR $userFolder
+ENV pathThemes=GNUstep/Library/Themes
+ENV gitThemes=https://github.com/gnustep/themes.git
+RUN cd $userFolder && mkdir -p GNUstep && mkdir -p GNUStep/Library && mkdir -p $pathThemes
+RUN cd $userFolder/$pathThemes && git clone $gitThemes && cd themes && mv * ../ && rm -rf themes
+
 # Install GNUstep-hello-world
 WORKDIR $userFolder
 RUN git clone https://github.com/optimisme/GNUstep-hello-world.git
@@ -72,7 +80,7 @@ RUN cd $pathApp && . $pathSh && make
 RUN echo "#!/bin/bash" > $pathEntry
 RUN echo "cd $pathApp" >> $pathEntry
 RUN echo ". $pathSh" >> $pathEntry
-RUN echo "./Hello.app/Hello" >> $pathEntry
+RUN echo "$execApp" >> $pathEntry
 RUN chmod +x $pathEntry
 
 # Set entrypoint (can't use ARGs)
