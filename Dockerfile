@@ -55,8 +55,30 @@ RUN . $pathSh && defaults write NSGlobalDomain GSSuppressAppIcon YES
 RUN . $pathSh && defaults write NSGlobalDomain GSAppOwnsMiniwindow NO
 RUN . $pathSh && defaults write NSGlobalDomain NSMenuInterfaceStyle NSWindows95InterfaceStyle
 
+RUN . $pathSh && defaults write NSGlobalDomain GSTheme WinClassic
+
 RUN . $pathSh && defaults write NSGlobalDomain NSFont OpenSans
 RUN . $pathSh && defaults write NSGlobalDomain NSFontSize 14.0
+RUN . $pathSh && defaults write NSGlobalDomain NSBoldFont OpenSans-Bold
+RUN . $pathSh && defaults write NSGlobalDomain NSBoldFontSize 14.0
+RUN . $pathSh && defaults write NSGlobalDomain NSLabelFont OpenSans
+RUN . $pathSh && defaults write NSGlobalDomain NSLabelFontSize 14.0
+RUN . $pathSh && defaults write NSGlobalDomain NSMenuFont OpenSans
+RUN . $pathSh && defaults write NSGlobalDomain NSMenuFontSize 14.0
+RUN . $pathSh && defaults write NSGlobalDomain NSMessageFont OpenSans
+RUN . $pathSh && defaults write NSGlobalDomain NSMessageFontSize 14.0
+RUN . $pathSh && defaults write NSGlobalDomain NSPaletteFont OpenSans-Bold
+RUN . $pathSh && defaults write NSGlobalDomain NSPaletteFontSize 14.0
+RUN . $pathSh && defaults write NSGlobalDomain NSTitleBarFont OpenSans-Bold
+RUN . $pathSh && defaults write NSGlobalDomain NSTitleBarFontSize 14.0
+RUN . $pathSh && defaults write NSGlobalDomain NSToolTipsFont OpenSans
+RUN . $pathSh && defaults write NSGlobalDomain NSToolTipsFontSize 14.0
+RUN . $pathSh && defaults write NSGlobalDomain NSControlContentFont OpenSans
+RUN . $pathSh && defaults write NSGlobalDomain NSControlContentFontSize 14.0
+RUN . $pathSh && defaults write NSGlobalDomain NSUserFont OpenSans
+RUN . $pathSh && defaults write NSGlobalDomain NSUserFontSize 14.0
+RUN . $pathSh && defaults write NSGlobalDomain NSUserFixedPitchFont OpenSans
+RUN . $pathSh && defaults write NSGlobalDomain NSUserFixedPitchFontSize 14.0
 
 # Install GNUstep system preferences
 WORKDIR $userFolder
