@@ -14,9 +14,9 @@ docker build -t gnustep --no-cache - < ./Dockerfile
 docker run -dit --env="DISPLAY=host.docker.internal:0" gnustep
 ```
 
-### Hello world file location:
+### Hello world application location:
 
-The hello world file will automatically launch, it is located at: 
+The hello world application will automatically launch, it is located at: 
 
 ```
 /home/docker/GNUstep-hello-world
