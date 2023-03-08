@@ -47,6 +47,4 @@ Then, allow X11 forwarding via xhost
 xhost +localhost
 ```
 
-Instructions from: 
-
-[X11 forwarding on macOS and docker](https://gist.github.com/sorny/969fe55d85c9b0035b0109a31cbcb088)
+Instructions from: [X11 forwarding on macOS and docker](https://gist.github.com/sorny/969fe55d85c9b0035b0109a31cbcb088)

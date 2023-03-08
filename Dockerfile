@@ -1,24 +1,5 @@
 FROM ubuntu:22.04
 
-# Create Docker Image:
-# docker build -t gnustep - < ./Dockerfile
-# docker build -t gnustep --no-cache - < ./Dockerfile
-
-# Run as a Container (ensure XQuartz is running):
-# docker run -dit --env="DISPLAY=host.docker.internal:0" gnustep
-
-# Install and run XQuartz to run X11 GUI apps on macOS
-# https://gist.github.com/sorny/969fe55d85c9b0035b0109a31cbcb088
-# brew install --cask xquartz
-# open -a XQuartz
-# > Go to Security Settings and ensure that "Allow connections from network clients" is on
-# > Restart your Mac 
-# > Start XQuartz again with: 
-# open -a XQuartz
-# > Ensure that XQuartz is running similar to this: /opt/X11/bin/Xquartz :0 -listen tcp
-# > Allow X11 forwarding via xhost (unsafe all hosts: xhost +)
-# xhost +localhost
-
 # Set ARGs
 ARG timeZone="America/New_York"
 ARG userName=docker
