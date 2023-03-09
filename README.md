@@ -17,6 +17,8 @@ docker run -dit --env="DISPLAY=host.docker.internal:0" gnustep
 
 OSX:
 ```
+open -a XQuartz
+xhost +localhost
 docker run -dit --env="DISPLAY=docker.for.mac.host.internal:0" gnustep
 ```
 
