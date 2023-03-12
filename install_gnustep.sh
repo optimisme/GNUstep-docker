@@ -1,11 +1,9 @@
 #!/bin/bash
 
-userFolder=~/
+userFolder=~/Documents/
 pathOpen=/usr/GNUstep/System/Tools/openapp
 pathShFolder=/usr/GNUstep/System/Library/Makefiles
 pathSh=$pathShFolder/GNUstep.sh
-pathApp=$userFolder/GNUstep-hello-world
-execApp=$pathApp/Hello.app
 
 # Update apt listings
 sudo apt -y update
@@ -51,7 +49,7 @@ cd $userFolder/$pathThemes && git clone $gitThemes && mv themes/* ./ && rm -rf t
 # Install GNUstep-hello-world
 cd $userFolder
 git clone https://github.com/optimisme/GNUstep-hello-world.git
-cd $pathApp && . $pathSh && make
+cd $userFolder/GNUstep-hello-world && . $pathSh && make
 
 # Create an entrypoint
 echo "export GNUSTEP_CONFIG_FILE=$pathShFolder" >> $userFolder/.bashrc
